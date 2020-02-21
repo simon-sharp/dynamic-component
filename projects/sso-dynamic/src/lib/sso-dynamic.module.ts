@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
-import {SsoDynamicComponent} from './sso-dynamic.component';
+
 import {SsoDynamicComponentDirective} from './directives/sso-dynamic-component/sso-dynamic-component.directive';
 import {SsoDynamicModuleComponentDirective} from './directives/sso-dynamic-module-component/sso-dynamic-module-component.directive';
+import {SsoDynamicComponent} from './components/sso-dynamic/sso-dynamic.component';
 
 const COMPONENTS = [
   SsoDynamicComponent,

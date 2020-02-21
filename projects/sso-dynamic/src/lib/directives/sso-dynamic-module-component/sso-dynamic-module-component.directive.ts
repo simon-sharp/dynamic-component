@@ -62,7 +62,12 @@ export class SsoDynamicModuleComponentDirective implements OnDestroy, OnChanges,
                     modules.set(this.dynamicComponent.moduleType, module = factory.create(this.injector));
                     this.createComponent(module);
                 } catch (e) {
-                    console.error('Could not compile module of dynamic component (module: %s, component: %s)', moduleName, componentName, e);
+                    console.error(
+                        'Could not compile module of dynamic component (module: %s, component: %s)',
+                        moduleName,
+                        componentName,
+                        e
+                    );
                 }
             }
         }

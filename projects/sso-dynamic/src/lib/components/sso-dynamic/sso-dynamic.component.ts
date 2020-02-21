@@ -21,6 +21,6 @@ export class  SsoDynamicComponent {
     }
 
     public showDynamicModuleComponent() {
-        return this.hasDynamicComponent() && !this.dynamicComponentHasModuleDeclared();
+        return this.hasDynamicComponent() && this.dynamicComponentHasModuleDeclared();
     }
 }

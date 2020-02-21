@@ -1,0 +1,15 @@
+{
+  "name": "@simon-sharp/sso-dynamic",
+  "version": "3.0.0",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  },
+  "description": "An Angular package that allows to load and change components by configuration at runtime. This is usefull for creating pages that are defined by server configuration.",
+  "keywords": [
+    "angular",
+    "dynamic"
+  ],
+  "author": "Simon Sharp",
+  "license": "ISC"
+}

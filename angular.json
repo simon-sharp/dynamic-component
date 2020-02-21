@@ -1,33 +1,33 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "sso-libraries": {
-      "root": "",
-      "sourceRoot": "src",
+    "dynamic-component": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "sso",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sso-libraries",
+            "outputPath": "dist/dynamic-component",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -45,7 +45,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -54,6 +53,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -62,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sso-libraries:build"
+            "browserTarget": "dynamic-component:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sso-libraries:build:production"
+              "browserTarget": "dynamic-component:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sso-libraries:build"
+            "browserTarget": "dynamic-component:build"
           }
         },
         "test": {
@@ -81,64 +85,49 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ]
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "sso-libraries-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sso-libraries:serve"
+            "devServerTarget": "dynamic-component:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sso-libraries:serve:production"
+              "devServerTarget": "dynamic-component:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     },
     "sso-dynamic": {
+      "projectType": "library",
       "root": "projects/sso-dynamic",
       "sourceRoot": "projects/sso-dynamic/src",
-      "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -146,6 +135,11 @@
           "options": {
             "tsConfig": "projects/sso-dynamic/tsconfig.lib.json",
             "project": "projects/sso-dynamic/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sso-dynamic/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -169,7 +163,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "sso-libraries"
+    }},
+  "defaultProject": "dynamic-component"
 }
